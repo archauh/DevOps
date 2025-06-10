@@ -18,17 +18,15 @@ wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.42/bin/apache-tomcat-10.1.4
 
 Extract the tar file
 tar xzf apache-tomcat-10.1.42.tar.gz
-# Rename
 mv apache-tomcat-10.1.42 tomcat
-
-# Fix permissions and start
 chmod +x /opt/tomcat/bin/*.sh
 /opt/tomcat/bin/startup.sh
 
 Access Tomcat at:
-👉 http://<your-server-ip>:8080
+👉 http://server-ip:8080
 
 📁 Create Sample Java WebApp with Maven
+
 mvn archetype:generate -DgroupId=com.example -DartifactId=sample-webapp \
 -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
 
@@ -40,14 +38,11 @@ cd sample-webapp
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.example</groupId>
     <artifactId>sample-webapp</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-
     <name>Sample WebApp</name>
-
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -56,7 +51,6 @@ cd sample-webapp
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
     <build>
         <finalName>sample-webapp</finalName>
         <plugins>
@@ -71,11 +65,12 @@ cd sample-webapp
 
 
 🧾 Create a Simple Servlet
+
 mkdir -p src/main/java/com/example
 nano src/main/java/com/example/HelloServlet.java
 
-package com.example;
 
+package com.example;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.IOException;
@@ -89,25 +84,24 @@ public class HelloServlet extends HttpServlet {
 
 
 ⚙️ Configure web.xml
+
 mkdir -p src/main/webapp/WEB-INF
 nano src/main/webapp/WEB-INF/web.xml
 
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
          version="3.0">
-
     <servlet>
         <servlet-name>hello</servlet-name>
         <servlet-class>com.example.HelloServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>hello</servlet-name>
         <url-pattern>/hello</url-pattern>
     </servlet-mapping>
-
 </web-app>
 
 🏗️ Build the WAR File
+
 mvn clean package
 
 Output:
@@ -119,7 +113,7 @@ sudo cp target/sample-webapp.war /opt/tomcat/webapps/
 /opt/tomcat/bin/shutdown.sh
 /opt/tomcat/bin/startup.sh
 
-Access:
+Access the application:
 http://<your-server-ip>:8080/sample-webapp/
 
 
