@@ -17,20 +17,25 @@ cd /opt
 wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.42/bin/apache-tomcat-10.1.42.tar.gz
 
 Extract the tar file
+
+
 tar xzf apache-tomcat-10.1.42.tar.gz
 mv apache-tomcat-10.1.42 tomcat
 chmod +x /opt/tomcat/bin/*.sh
 /opt/tomcat/bin/startup.sh
+
 
 Access Tomcat at:
 👉 http://server-ip:8080
 
 📁 Create Sample Java WebApp with Maven
 
+
 mvn archetype:generate -DgroupId=com.example -DartifactId=sample-webapp \
 -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
 
 cd sample-webapp
+
 
 🛠 Update pom.xml
 
@@ -64,6 +69,7 @@ cd sample-webapp
 </project>
 
 
+
 🧾 Create a Simple Servlet
 
 mkdir -p src/main/java/com/example
@@ -85,6 +91,7 @@ public class HelloServlet extends HttpServlet {
 
 ⚙️ Configure web.xml
 
+
 mkdir -p src/main/webapp/WEB-INF
 nano src/main/webapp/WEB-INF/web.xml
 
@@ -100,12 +107,14 @@ nano src/main/webapp/WEB-INF/web.xml
     </servlet-mapping>
 </web-app>
 
-🏗️ Build the WAR File
 
+🏗️ Build the WAR File
 mvn clean package
+
 
 Output:
 target/sample-webapp.war
+
 
 🚀 Deploy WAR to Tomcat
 sudo cp target/sample-webapp.war /opt/tomcat/webapps/
